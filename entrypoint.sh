@@ -46,14 +46,6 @@ case $INPUT_PRETTIER_VERSION in
         ;;
 esac
 
-case $INPUT_WORKING_DIRECTORY in
-    false)
-        ;;
-    *)
-        cd $INPUT_WORKING_DIRECTORY
-        ;;
-esac
-
 # Install plugins
 if [ -n "$INPUT_PRETTIER_PLUGINS" ]; then
     for plugin in $INPUT_PRETTIER_PLUGINS; do
@@ -68,6 +60,16 @@ if [ -n "$INPUT_PRETTIER_PLUGINS" ]; then
 fi
 )
 
+case $INPUT_WORKING_DIRECTORY in
+    false)
+        ;;
+    *)
+        cd $INPUT_WORKING_DIRECTORY
+        ;;
+esac
+
+pwd
+ls
 PRETTIER_RESULT=0
 echo "Prettifying files..."
 echo "Files:"
