@@ -78,15 +78,7 @@ prettier $INPUT_PRETTIER_OPTIONS \
 
 echo "Prettier result: $PRETTIER_RESULT"
 
-# Removing the node_modules folder, so it doesn't get committed if it is not added in gitignore
-if $INPUT_CLEAN_NODE_FOLDER; then
-  echo "Deleting node_modules/ folder..."
-  if [ -d 'node_modules' ]; then
-    rm -r node_modules/
-  else
-    echo "No node_modules/ folder."
-  fi
-fi
+git checkout -- .yarn/install-state.gz
 
 if [ -f 'package-lock.json' ]; then
   git checkout -- package-lock.json
